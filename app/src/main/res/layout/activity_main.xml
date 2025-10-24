@@ -1,19 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/about_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/about_description" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="24sp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/attacks_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/permission_bypass_subtitle" />
+
+        <Button
+            android:id="@+id/btn_runtime_permissions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_runtime_permissions"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_device_admin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_device_admin"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_display_over_apps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_display_over_apps"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_notification_service"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_notification_service"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_web"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_web"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="24sp"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/other_attacks_subtitle" />
+
+        <Button
+            android:id="@+id/btn_app_touchjacking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_app_touchjacking"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_clickjacking"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_clickjacking"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/btn_control_ui_elements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="12dp"
+            android:backgroundTint="?attr/colorPrimary"
+            android:text="@string/btn_control_ui_elements"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+</ScrollView>

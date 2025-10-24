@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">TapTrap Attack Showcase</string>
+    <string name="title">TapTrap</string>
+    <string name="about_title">About</string>
+    <string name="attacks_title">Attacks</string>
+    <string name="about_description">This application showcases different attack scenarios using TapTrap - an animation-driven tapjacking attack.</string>
+    <string name="permission_bypass_subtitle">Permission Bypass</string>
+    <string name="other_attacks_subtitle">Other Attacks</string>
+    <string name="btn_runtime_permissions">Runtime Permissions</string>
+    <string name="btn_device_admin">Device Admin</string>
+    <string name="btn_display_over_apps">Display Over Apps</string>
+    <string name="btn_notification_service">Notification Service</string>
+    <string name="btn_web">Web</string>
+    <string name="btn_app_touchjacking">App Touchjacking</string>
+    <string name="btn_clickjacking">Clickjacking</string>
+    <string name="btn_control_ui_elements">Control UI Elements</string>
 </resources>

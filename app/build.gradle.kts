@@ -7,6 +7,10 @@ android {
     namespace = "edu.hm.itsec.taptrapattackshowcase"
     compileSdk = 36
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "edu.hm.itsec.taptrapattackshowcase"
         minSdk = 24

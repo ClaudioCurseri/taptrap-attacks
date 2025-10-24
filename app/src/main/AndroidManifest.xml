@@ -21,6 +21,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".apptouchjacking.AppTouchjackingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".clickjacking.ClickjackingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".controluielements.ControlUiElementsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".deviceadmin.DeviceAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".displayoverapps.DisplayOverAppsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".notificationservice.NotificationServiceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".runtimepermissions.RuntimePermissionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".web.WebActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
