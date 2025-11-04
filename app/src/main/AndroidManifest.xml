@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -41,6 +46,11 @@
             android:exported="false" />
         <activity
             android:name=".runtimepermissions.RuntimePermissionsActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".runtimepermissions.TapGameActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".web.WebActivity"

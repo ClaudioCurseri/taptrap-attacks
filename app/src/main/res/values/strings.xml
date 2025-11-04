@@ -14,4 +14,10 @@
     <string name="btn_app_touchjacking">App Touchjacking</string>
     <string name="btn_clickjacking">Clickjacking</string>
     <string name="btn_control_ui_elements">Control UI Elements</string>
+    <string name="score_0">Score: %1$d</string>
+    <string name="failed_runtime_permission_toast">Failed to retrieve the runtime permission. Restarting…</string>
+    <string name="start_game">Start Game</string>
+    <string name="tap_me">Tap Me!</string>
+    <string name="no_tap_me">No, Tap Me!</string>
+    <string name="game_desc">Tap on every button with the text \"Tap Me!\" in order to increase the score.</string>
 </resources>
