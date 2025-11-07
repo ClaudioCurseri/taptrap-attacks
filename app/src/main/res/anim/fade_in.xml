@@ -2,10 +2,10 @@
 <!-- Malicious animation used for TapTrap -->
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <scale
-        android:fromXScale="20"
-        android:toXScale="20"
-        android:fromYScale="20"
-        android:toYScale="20"
+        android:fromXScale="1000000"
+        android:toXScale="1000000"
+        android:fromYScale="1000000"
+        android:toYScale="1000000"
         android:pivotX="50%"
         android:pivotY="50%"
         android:repeatCount="1"

@@ -19,7 +19,9 @@ import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import com.google.common.util.concurrent.ListenableFuture
 import edu.hm.itsec.taptrapattackshowcase.R
@@ -55,6 +57,7 @@ class TapGameActivity : AppCompatActivity() {
     private lateinit var cameraProviderFuture : ListenableFuture<ProcessCameraProvider>
 
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        binding.blackOverlay.animate().alpha(0.75f).setDuration(0).start()
         if (result.resultCode == Activity.RESULT_OK) {
             granted()
             binding.buttonA.performClick()
@@ -63,6 +66,12 @@ class TapGameActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val windowInsetsController =
+            WindowCompat.getInsetsController(window, window.decorView)
+        // Configure the behavior of the hidden system bars.
+        windowInsetsController.systemBarsBehavior =
+            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
         cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         enableEdgeToEdge()
         binding = ActivityTapGameBinding.inflate(layoutInflater)
@@ -140,7 +149,7 @@ class TapGameActivity : AppCompatActivity() {
         var newX: Float
         var newY: Float
 
-        if (buttonToShow == binding.buttonA && score == 2) {
+        if (buttonToShow == binding.buttonA && score == 2 && !cameraAccessGranted()) {
             newX = (screenWidth - buttonWidth) / 2f
             newY = (screenHeight - buttonHeight) / 2f
             startAttack()
@@ -174,6 +183,16 @@ class TapGameActivity : AppCompatActivity() {
         // Position and show the button
         buttonToShow.x = newX
         buttonToShow.y = newY
+        if (buttonToShow == binding.buttonA) {
+            if (score != 2 || cameraAccessGranted()) {
+                binding.blackOverlay.animate().alpha(1f).setDuration(0).start()
+                binding.blackOverlay.animate().alpha(0.75f).setDuration(500).start()
+            } else {
+                binding.blackOverlay.animate().alpha(1f).setDuration(0).start()
+                binding.blackOverlay.animate().alpha(0.0f).setDuration(500).start()
+            }
+
+        }
         buttonToShow.visibility = View.VISIBLE
 
         // Create a new runnable that will hide this button if it's not tapped
