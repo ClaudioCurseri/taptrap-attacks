@@ -43,6 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".notificationservice.NotificationServiceActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".runtimepermissions.RuntimePermissionsActivity"
@@ -55,6 +56,17 @@
         <activity
             android:name=".web.WebActivity"
             android:exported="false" />
+
+        <service
+            android:name=".notificationservice.NotificationListenerService"
+            android:exported="true"
+            android:label="Listener"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+
+        </service>
     </application>
 
 </manifest>

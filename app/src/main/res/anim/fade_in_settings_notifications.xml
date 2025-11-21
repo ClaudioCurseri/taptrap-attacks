@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Malicious animation used for TapTrap -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <set
+        android:ordering="sequentially"
+        android:fillEnabled="true"
+        android:fillAfter="true">
+
+        <scale
+            android:fromXScale="2"
+            android:toXScale="2"
+            android:fromYScale="2"
+            android:toYScale="2"
+            android:pivotX="100%"
+            android:pivotY="40%"
+            android:duration="1000"
+            android:fillAfter="true" />
+
+        <scale
+            android:fromXScale="1"
+            android:toXScale="1"
+            android:fromYScale="1"
+            android:toYScale="1"
+            android:pivotX="100%"
+            android:pivotY="40%"
+            android:duration="2999"
+            android:startOffset="0"
+            android:fillAfter="true" />
+
+    </set>
+
+    <alpha
+        android:fromAlpha="0.8"
+        android:toAlpha="0.8"
+        android:repeatCount="1"
+        android:duration="2999" />
+</set>
