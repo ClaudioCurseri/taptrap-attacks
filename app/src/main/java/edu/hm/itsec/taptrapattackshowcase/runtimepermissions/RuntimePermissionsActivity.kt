@@ -16,7 +16,7 @@ class RuntimePermissionsActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnStartGame.setOnClickListener {
-            val intent = Intent(applicationContext, TapGameActivity::class.java)
+            val intent = Intent(applicationContext, RuntimePermissionAttackActivity::class.java)
             startActivity(intent)
         }
     }
