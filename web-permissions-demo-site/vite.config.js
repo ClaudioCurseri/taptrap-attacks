@@ -6,7 +6,6 @@ export default defineConfig({
     host: false, 
     allowedHosts: [
         // add your ngrok URL here
-      "painstaking-gutsily-tamar.ngrok-free.dev",
     ]
   },
 });
