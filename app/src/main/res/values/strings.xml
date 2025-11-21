@@ -21,4 +21,6 @@
     <string name="tap_me">Tap Me!</string>
     <string name="no_tap_me">No, Tap Me!</string>
     <string name="game_desc">Tap on every button with the text \"Tap Me!\" in order to increase the score.</string>
+    <string name="runtime_permission_attack_description">Click on the button below to start the attack. The app will try to gain the camera permission.</string>
+    <string name="start">Start</string>
 </resources>
