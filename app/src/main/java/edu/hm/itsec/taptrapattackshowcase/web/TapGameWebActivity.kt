@@ -236,7 +236,7 @@ class TapGameWebActivity : AppCompatActivity() {
         Log.d(TAG, "Starting attack...")
 
         // Create an Intent to open the CustomTabs activity
-        val url = "https://painstaking-gutsily-tamar.ngrok-free.dev"  // URL to open in CustomTab
+        val url = ""  // URL to open in CustomTab
         val customTabsIntent = CustomTabsIntent.Builder()
             .setShowTitle(false)
             .setUrlBarHidingEnabled(true)
