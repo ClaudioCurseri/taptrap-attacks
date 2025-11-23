@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/book_details_heading"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingVertical="19dp"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/text_book_details_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/book_title"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_book_details_author"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/book_author"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:textSize="16sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/book_summary_heading"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_book_details_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/book_summary"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="20dp"
+        android:minHeight="95dp"/>
+
+    <Button
+        android:id="@+id/btn_start_reading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="12dp"
+        android:backgroundTint="?attr/colorPrimary"
+        android:text="@string/btn_start_reading"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:paddingVertical="15dp"/>
+
+</LinearLayout>
