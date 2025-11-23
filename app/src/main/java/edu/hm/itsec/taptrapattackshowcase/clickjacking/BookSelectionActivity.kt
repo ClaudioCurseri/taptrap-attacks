@@ -11,6 +11,7 @@ import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import edu.hm.itsec.taptrapattackshowcase.Constants
 import edu.hm.itsec.taptrapattackshowcase.R
 import edu.hm.itsec.taptrapattackshowcase.databinding.ActivityBookSelectionBinding
 import kotlinx.coroutines.delay
@@ -132,7 +133,7 @@ class BookSelectionActivity: AppCompatActivity() {
      */
     private fun openCustomTab() {
         // Create an Intent to open the CustomTabs activity
-        val url = ""  // URL of demo website
+        val url = Constants.DEMO_WEBSITE_URL
         var fadeInAnimation = R.anim.fade_in_clickjacking_transparent
         if (transparencyDeactivated) {
             fadeInAnimation = R.anim.fade_in_clickjacking

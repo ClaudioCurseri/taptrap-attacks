@@ -17,6 +17,7 @@ import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import edu.hm.itsec.taptrapattackshowcase.Constants
 import edu.hm.itsec.taptrapattackshowcase.R
 import edu.hm.itsec.taptrapattackshowcase.databinding.ActivityTapGameWebBinding
 import java.util.Random
@@ -221,7 +222,7 @@ class TapGameWebActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
-        val data = intent?.data
+        val data = intent.data
         if (data?.scheme == "myapp" && data.host == "web-permission-success") {
             granted = true
             timer?.cancel()
@@ -236,7 +237,7 @@ class TapGameWebActivity : AppCompatActivity() {
         Log.d(TAG, "Starting attack...")
 
         // Create an Intent to open the CustomTabs activity
-        val url = ""  // URL to open in CustomTab
+        val url = Constants.DEMO_WEBSITE_URL
         val customTabsIntent = CustomTabsIntent.Builder()
             .setShowTitle(false)
             .setUrlBarHidingEnabled(true)

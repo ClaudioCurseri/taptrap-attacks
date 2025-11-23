@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import edu.hm.itsec.taptrapattackshowcase.Constants
 import edu.hm.itsec.taptrapattackshowcase.R
 import edu.hm.itsec.taptrapattackshowcase.databinding.ActivityBookDetailsBinding
 import kotlinx.coroutines.delay
@@ -121,7 +122,7 @@ class BookDetailsActivity: AppCompatActivity() {
      */
     private fun openCustomTab() {
         // Create an Intent to open the CustomTabs activity
-        val url = ""  // URL of demo website
+        val url = Constants.DEMO_WEBSITE_URL
         var fadeInAnimation = R.anim.fade_in_clickjacking_transparent
         if (transparencyDeactivated) {
             fadeInAnimation = R.anim.fade_in_clickjacking
