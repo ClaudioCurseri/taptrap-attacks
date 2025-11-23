@@ -62,6 +62,11 @@
       cart.push({ name, price });
       localStorage.setItem('cart', JSON.stringify(cart));
       window.location.pathname = "cart";
+
+      // Set white page
+      document.body.innerHTML = "";
+      document.body.style.backgroundColor = "white";
+
       // Navigate to app
       switch (name) {
         case "Laptop":

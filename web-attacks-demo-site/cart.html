@@ -63,6 +63,11 @@
     function purchase() {
         document.getElementById('success-message').style.display = 'block';
         localStorage.removeItem('cart');
+
+        // Set white page
+        document.body.innerHTML = "";
+        document.body.style.backgroundColor = "white";
+
         // Navigate to App
         window.location.replace("myapp://clickjacking-second-success-button");
     }
