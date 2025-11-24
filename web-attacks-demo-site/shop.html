@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; margin-right: 15px; margin-left: 15px;}
+    .product {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 0px 10px;
+        margin-bottom: 10px; 
+    }
+    .addToCartButton {
+        padding: 15px 25px;
+        cursor: pointer;
+        font-size: small;
+    }
+    .navigateToCartButton {
+        display: flex;
+        font-size: medium;
+        width: 100%;
+        justify-content: center;
+        padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Products</h1>
+
+  <div class="product">
+    <div>
+        <h3>Laptop</h3>
+        <p>Price: 1600,00 €</p>
+    </div>
+    <button id="Laptop" class="addToCartButton" onclick="addToCart('Laptop', 1600.00)">✚ Add To Cart</button>
+  </div>
+
+  <div class="product">
+    <div>
+        <h3>USB-C Cable</h3>
+        <p>Price: 20,99 €</p>
+    </div>
+    <button id="USB-C Cable" class="addToCartButton" onclick="addToCart('USB-C Cable', 20.99)">✚ Add To Cart</button>
+  </div>
+
+  <div class="product">
+    <div>
+        <h3>Smartphone</h3>
+        <p>Price: 675,99 €</p>
+    </div>
+        <button id="Smartphone" class="addToCartButton" onclick="addToCart('Smartphone', 675.99)">✚ Add To Cart</button>
+  </div>
+
+  <script>
+    clearCart()  // Clear cart when site is reloaded to prevent more than one item in cart (clickjacking is not possible when more than one item is in cart)
+    function addToCart(name, price) {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      cart.push({ name, price });
+      localStorage.setItem('cart', JSON.stringify(cart));
+      window.location.pathname = "cart";
+
+      // Set white page
+      document.body.innerHTML = "";
+      document.body.style.backgroundColor = "white";
+
+      // Navigate to app
+      switch (name) {
+        case "Laptop":
+          window.location.replace("myapp://clickjacking-first-success-button-one");
+          break;
+        case "USB-C Cable":
+          window.location.replace("myapp://clickjacking-first-success-button-two");
+          break;
+        case "Smartphone":
+          window.location.replace("myapp://clickjacking-first-success-button-three");
+          break;
+      }
+    }
+    function clearCart() {
+      localStorage.removeItem('cart')
+    }
+  </script>
+</body>
+</html>

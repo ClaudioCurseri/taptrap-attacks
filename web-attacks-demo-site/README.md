@@ -1,7 +1,15 @@
-# Web Permissions Demo
+# Web TapTrap Attacks
 
-This site is a demo site for demonstration of granting web permissions with TapTrap.
+This site is a demo site for demonstration of multiple TapTrap attacks in the web browser.
+
+### Web Permissions Demo
+
+`index.html` (`/`-Endpoint) is used for demonstration of granting web permissions with TapTrap.
 If the geolocation permission was successfully granted, the location is displayed on the website.
+
+### Clickjacking Demo
+
+To demonstrate clickjacking, the website provides a webshop (`/shop`). Users can add a product to cart and purchase it at `/cart`.
 
 ## Starting the website
 

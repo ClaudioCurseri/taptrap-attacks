@@ -69,6 +69,38 @@
                     android:host="web-permission-success" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".clickjacking.BookSelectionActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="myapp"
+                    android:host="clickjacking-first-success-button-one" />
+                <data
+                    android:scheme="myapp"
+                    android:host="clickjacking-first-success-button-two" />
+                <data
+                    android:scheme="myapp"
+                    android:host="clickjacking-first-success-button-three" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".clickjacking.BookDetailsActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="myapp"
+                    android:host="clickjacking-second-success-button" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".notificationservice.NotificationListenerService"
