@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Web Permissions Demo</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 10px 15px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #f8f8f8;
+            min-height: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Web Permissions Demo</h1>
+    <p>Your Location is:</p>
+    <div id="output">Location is shown here</div>
+
+    <script>
+        checkLocationPermission()
+
+        async function checkLocationPermission() {
+            if (navigator.permissions) {
+                const output = document.getElementById('output');
+                try {
+                    const status = await navigator.permissions.query({ name: "geolocation" });
+
+                    if (status.state === "granted") {
+                        output.textContent = `Location: ${pos.coords.longitude}; ${pos.coords.latitude}`
+                        window.location.replace("myapp://web-permission-success");
+                        return true;
+                    }
+
+                    if (status.state === "denied") {
+                        output.textContent = `Permission State: ${status.state}`;
+                        return false;
+                    }
+
+                    return await requestLocationPermission();
+                } catch (err) {
+                    output.textContent = "Permissions API doesn't support 'geolocation'.";
+                }
+            }
+
+            return await requestLocationPermission();
+        }
+
+
+        async function requestLocationPermission() {
+            return new Promise((resolve) => {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        const output = document.getElementById('output');
+                        output.textContent = `Location: ${pos.coords.longitude}; ${pos.coords.latitude}`
+                        window.location.replace("myapp://web-permission-success");
+                        resolve(true);
+                    },
+                    (err) => {
+                        const output = document.getElementById('output');
+                        output.textContent = "Permission denied"
+                        resolve(false);
+                    }
+                );
+            });
+        }
+    </script>
+</body>
+</html>

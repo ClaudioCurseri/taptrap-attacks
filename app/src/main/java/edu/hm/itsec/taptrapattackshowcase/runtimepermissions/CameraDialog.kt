@@ -18,9 +18,9 @@ import edu.hm.itsec.taptrapattackshowcase.R
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
-class GameOverDialog : DialogFragment() {
+class CameraDialog : DialogFragment() {
 
-    private val TAG = "GameOverDialog"
+    private val TAG = "CameraDialog"
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val activity = requireActivity()
@@ -78,8 +78,8 @@ class GameOverDialog : DialogFragment() {
     }
 
     companion object {
-        fun newInstance(title: String, message: String): GameOverDialog {
-            val fragment = GameOverDialog()
+        fun newInstance(title: String, message: String): CameraDialog {
+            val fragment = CameraDialog()
             val args = Bundle()
             args.putString("DIALOG_TITLE", title)
             args.putString("DIALOG_MESSAGE", message)

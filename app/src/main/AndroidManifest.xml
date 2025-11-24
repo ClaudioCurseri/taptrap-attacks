@@ -50,12 +50,25 @@
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".runtimepermissions.TapGameActivity"
+            android:name=".runtimepermissions.RuntimePermissionAttackActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".web.WebActivity"
             android:exported="false" />
+        <activity
+            android:name=".web.TapGameWebActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="myapp"
+                    android:host="web-permission-success" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".notificationservice.NotificationListenerService"

