@@ -45,6 +45,9 @@
             android:name=".notificationservice.NotificationServiceActivity"
             android:screenOrientation="portrait"
             android:exported="false" />
+        <activity android:name=".notificationservice.NotificationServiceAttackActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
         <activity
             android:name=".runtimepermissions.RuntimePermissionsActivity"
             android:screenOrientation="portrait"
