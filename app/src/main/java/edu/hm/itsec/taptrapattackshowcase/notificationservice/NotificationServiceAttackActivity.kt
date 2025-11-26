@@ -48,7 +48,7 @@ class NotificationServiceAttackActivity : AppCompatActivity() {
             if (notificationListenerServicePermissionGranted(applicationContext)) {
                 // bring app to front
                 val intent = Intent(this@NotificationServiceAttackActivity, NotificationServiceAttackActivity::class.java).apply {
-                    addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT)
+                    addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 }
                 val options = ActivityOptionsCompat.makeCustomAnimation(
                     this@NotificationServiceAttackActivity,
