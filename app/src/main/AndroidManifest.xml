@@ -43,6 +43,10 @@
             android:exported="false" />
         <activity
             android:name=".notificationservice.NotificationServiceActivity"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity android:name=".notificationservice.NotificationServiceAttackActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".runtimepermissions.RuntimePermissionsActivity"
@@ -100,6 +104,17 @@
                     android:host="clickjacking-second-success-button" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".notificationservice.NotificationListenerService"
+            android:exported="true"
+            android:label="Listener"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+
+        </service>
     </application>
 
 </manifest>
