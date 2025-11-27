@@ -7,13 +7,9 @@
     <string name="permission_bypass_subtitle">Permission Bypass</string>
     <string name="other_attacks_subtitle">Other Attacks</string>
     <string name="btn_runtime_permissions">Runtime Permissions</string>
-    <string name="btn_device_admin">Device Admin</string>
-    <string name="btn_display_over_apps">Display Over Apps</string>
     <string name="btn_notification_service">Notification Listener Service</string>
     <string name="btn_web">Web Permissions</string>
-    <string name="btn_app_touchjacking">App Touchjacking</string>
     <string name="btn_clickjacking">Clickjacking</string>
-    <string name="btn_control_ui_elements">Control UI Elements</string>
     <string name="score_0">Score: %1$d</string>
     <string name="failed_runtime_permission_toast">Failed to retrieve the runtime permission. Restarting…</string>
     <string name="failed_web_permission_toast">Failed to retrieve the web permission. Restarting…</string>
