@@ -16,7 +16,7 @@
     <string name="start_game">Start Game</string>
     <string name="tap_me">Tap Me!</string>
     <string name="no_tap_me">No, Tap Me!</string>
-    <string name="game_desc">Tap on every button with the text \"Tap Me!\" in order to increase the score.</string>
+    <string name="game_desc">Tap on every button with the text \"Tap Me!\" in order to increase the score. Use the switch below to deactivate transparency and see the attack.</string>
     <string name="clickjacking_desc">Select a book you want to read. View its details and start reading. Use the switch below to deactivate transparency and see the attack.</string>
     <string name="transparency_switch_desc">Deactivate transparency</string>
     <string name="books_heading">Books</string>
