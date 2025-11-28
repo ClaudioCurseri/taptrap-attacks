@@ -33,6 +33,8 @@ Set the website URL in [**Constants.kt**](../Constants.kt).
 Before starting the demo game, open the website in your browser and allow ngrok to visit the website. You will see
 the web permission dialog. Do not grant the permission, just close the browser and proceed in the app.
 
+After finishing the game, open the website in your browser to see your location.
+
 ### Browser
 
 Not all browsers support TapTrap. For example, **Chrome** blocks user input while animations are running, which prevents the demo from working as intended.
