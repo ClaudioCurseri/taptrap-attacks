@@ -106,7 +106,7 @@ class RuntimePermissionAttackActivity : AppCompatActivity() {
 
         // Creates the custom animation for the activity transition
         val activityOptions =
-            ActivityOptionsCompat.makeCustomAnimation(this, R.anim.fade_in, R.anim.fade_out)
+            ActivityOptionsCompat.makeCustomAnimation(this, R.anim.fade_in_runtime_permissions, R.anim.fade_out)
 
         // Starts the camera permission request screen with the animation
         resultLauncher.launch(intent, activityOptions)

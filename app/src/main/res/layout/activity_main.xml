@@ -69,28 +69,6 @@
             android:layout_gravity="center"/>
 
         <Button
-            android:id="@+id/btn_device_admin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginHorizontal="12dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:text="@string/btn_device_admin"
-            android:textSize="18sp"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/btn_display_over_apps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginHorizontal="12dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:text="@string/btn_display_over_apps"
-            android:textSize="18sp"
-            android:layout_gravity="center"/>
-
-        <Button
             android:id="@+id/btn_notification_service"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -124,17 +102,6 @@
             android:text="@string/other_attacks_subtitle" />
 
         <Button
-            android:id="@+id/btn_app_touchjacking"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginHorizontal="12dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:text="@string/btn_app_touchjacking"
-            android:textSize="18sp"
-            android:layout_gravity="center"/>
-
-        <Button
             android:id="@+id/btn_clickjacking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -142,17 +109,6 @@
             android:layout_marginHorizontal="12dp"
             android:backgroundTint="?attr/colorPrimary"
             android:text="@string/btn_clickjacking"
-            android:textSize="18sp"
-            android:layout_gravity="center"/>
-
-        <Button
-            android:id="@+id/btn_control_ui_elements"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginHorizontal="12dp"
-            android:backgroundTint="?attr/colorPrimary"
-            android:text="@string/btn_control_ui_elements"
             android:textSize="18sp"
             android:layout_gravity="center"/>
     </LinearLayout>
