@@ -4,12 +4,6 @@ Android application showcasing different attacks using TapTrap.
 
 TapTrap is a tapjacking attack targeting Android devices. The attack utilizes animations in order to secretly open another screen, such as a permission prompt, and make it invisible. This can be used to trick an user into performing sensitive actions, such as granting permissions, without the consent of the user.
 
-The original paper can be found [here](https://taptrap.click/usenix25_taptrap_paper.pdf).
-
-The official TapTrap Website can be found [here](https://taptrap.click).
-
-The official TapTrap Git repository can be found [here](https://github.com/beerphilipp/taptrap).
-
 ---
 
 ## Types of attacks
@@ -45,4 +39,12 @@ You can [read more about this type of attack](app/src/main/java/edu/hm/itsec/tap
 
 ---
 
-## Configuration
+## License Note
+
+This repository is released under the MIT License. See [`LICENSE`](LICENSE) for details.
+
+This project is based on the the original paper of TapTrap.
+
+- The original paper can be found [here](https://taptrap.click/usenix25_taptrap_paper.pdf).
+- The official TapTrap Website can be found [here](https://taptrap.click).
+- The official TapTrap Git repository can be found [here](https://github.com/beerphilipp/taptrap).
