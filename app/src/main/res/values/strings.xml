@@ -29,7 +29,7 @@
     <string name="book_selection_placeholder">Select a book, view its details and start reading.</string>
     <string name="book_summary_heading">Summary:</string>
     <string name="book_summary">%1$s</string>
-    <string name="runtime_permission_attack_description">Click on the button below to start the attack. The app will try to gain the camera permission.</string>
+    <string name="runtime_permission_attack_description">Click on the button below to start the attack. The app will try to gain the camera permission. Use the switch below to deactivate transparency and see the attacker\'s view.</string>
     <string name="start">Start</string>
     <string name="notification_attack_desc">Press on the Start-button to start the attack. Use the switch below to deactivate transparency and see the attacker\'s view.</string>
     <string name="activate_notification_listener_service">Activate Notification Listener Service</string>

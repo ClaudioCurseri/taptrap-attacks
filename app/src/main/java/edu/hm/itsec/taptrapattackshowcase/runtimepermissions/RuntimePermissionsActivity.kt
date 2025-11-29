@@ -9,6 +9,8 @@ class RuntimePermissionsActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRuntimePermissionsBinding
 
+    private var transparencyDeactivated = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRuntimePermissionsBinding.inflate(layoutInflater)
@@ -16,8 +18,14 @@ class RuntimePermissionsActivity : AppCompatActivity() {
         setContentView(view)
 
         binding.btnStartGame.setOnClickListener {
-            val intent = Intent(applicationContext, RuntimePermissionAttackActivity::class.java)
+            val intent = Intent(applicationContext, RuntimePermissionAttackActivity::class.java).apply {
+                putExtra("transparencyDeactivated", transparencyDeactivated)
+            }
             startActivity(intent)
+        }
+
+        binding.switchRuntimePermissionTransparency.setOnCheckedChangeListener { _, isChecked ->
+            transparencyDeactivated = isChecked
         }
     }
 }

@@ -34,6 +34,8 @@ class RuntimePermissionAttackActivity : AppCompatActivity() {
 
     private lateinit var cameraProviderFuture : ListenableFuture<ProcessCameraProvider>
 
+    private var transparencyDeactivated = false
+
     private var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             granted()
@@ -58,7 +60,7 @@ class RuntimePermissionAttackActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        transparencyDeactivated = intent.getBooleanExtra("transparencyDeactivated", false)
         if (cameraAccessGranted()) {
             granted()
         } else {
@@ -105,8 +107,9 @@ class RuntimePermissionAttackActivity : AppCompatActivity() {
         )
 
         // Creates the custom animation for the activity transition
+        val fadeInAnimation = if (transparencyDeactivated) R.anim.fade_in_runtime_permissions else R.anim.fade_in_runtime_permissions_transparent
         val activityOptions =
-            ActivityOptionsCompat.makeCustomAnimation(this, R.anim.fade_in_runtime_permissions, R.anim.fade_out)
+            ActivityOptionsCompat.makeCustomAnimation(this, fadeInAnimation, R.anim.fade_out)
 
         // Starts the camera permission request screen with the animation
         resultLauncher.launch(intent, activityOptions)
@@ -119,7 +122,9 @@ class RuntimePermissionAttackActivity : AppCompatActivity() {
                 val runtimePermissionAttackActivityIntent = Intent(
                     this@RuntimePermissionAttackActivity,
                     RuntimePermissionAttackActivity::class.java
-                )
+                ).apply {
+                    putExtra("transparencyDeactivated", transparencyDeactivated)
+                }
                 if (!granted) {
                     retry = true
                     val toast = Toast(applicationContext)
