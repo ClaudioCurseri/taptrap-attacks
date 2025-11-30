@@ -1,5 +1,9 @@
 # Clickjacking Attack with TapTrap
 
+**Important:** This attack has been developed and tested on a Samsung Galaxy A54.
+The technique relies on the app’s UI aligning with the UI of the demo website.
+On other devices, layout adjustments may be necessary to ensure proper alignment.
+
 ## What is it?
 
 In this demo, the user believes he is interacting with a normal Android app. In reality, he is interacting with an embedded web page.  

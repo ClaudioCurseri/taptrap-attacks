@@ -1,5 +1,10 @@
 # Web Permission Bypass Attack with TapTrap
 
+**Important:** This attack has been developed and tested on a Samsung Galaxy A54.
+It may not work correctly on other devices out of the box, because the 'allow' button
+might not be in the same spot. The zoom animation needs to be adjusted for the specific
+device used.
+
 ## What is it?
 
 In this demo, the user believes he is playing a simple game where he has to tap the correct button.  
