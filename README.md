@@ -43,7 +43,7 @@ You can [read more about this type of attack](app/src/main/java/edu/hm/itsec/tap
 
 This repository is released under the MIT License. See [`LICENSE`](LICENSE) for details.
 
-This project is based on the the original paper of TapTrap.
+This project is based on the original paper of TapTrap.
 
 - The original paper can be found [here](https://taptrap.click/usenix25_taptrap_paper.pdf).
 - The official TapTrap Website can be found [here](https://taptrap.click).
