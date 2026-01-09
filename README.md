@@ -4,6 +4,13 @@ Android application showcasing different attacks using TapTrap.
 
 TapTrap is a tapjacking attack targeting Android devices. The attack utilizes animations in order to secretly open another screen, such as a permission prompt, and make it invisible. This can be used to trick an user into performing sensitive actions, such as granting permissions, without the consent of the user.
 
+>**UPDATE**: TapTrap was **fixed** on Android 13-16 with the December 2025 security update:
+> 
+> - Touches are not received any more, when alpha < 0.5
+> - Max duration for default transition was decreased to 1500
+> 
+> See https://taptrap.click/#news for more information.
+
 ---
 
 ## Types of attacks
